@@ -16,6 +16,9 @@ public class Contacto {
 		this.chats=new ArrayList<Chat>();
 	}
 	
+	public boolean existo(String nombre){
+		return nombre==this.nombre;
+	}
 	public String getNombre(){
 		return this.nombre ;
 	}

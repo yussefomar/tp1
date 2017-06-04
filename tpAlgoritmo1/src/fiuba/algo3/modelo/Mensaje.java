@@ -10,5 +10,7 @@ public class Mensaje {
 	  this.Mensaje=unMensaje;
      }
 
-	
+	public int cantidad(){
+		return 1;
+	}
 }

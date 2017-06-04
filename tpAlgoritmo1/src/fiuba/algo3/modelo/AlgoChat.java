@@ -38,12 +38,10 @@ public class AlgoChat {
 		contactos.put(nombre, unContacto);
 	}
 	public  boolean existeContacto(String nombre){
-		if(nombre==contactos.get(nombre).getNombre()){
-		return true;	
-		}
-		return false;
-		
+		return contactos.get(nombre).existo(nombre);
 	}
+		
+	
 	public void recibirMensajeDe(String emisor,String contenido){
 	 
 	 contactos.get(emisor).agregarMensajeDe( emisor, contenido);

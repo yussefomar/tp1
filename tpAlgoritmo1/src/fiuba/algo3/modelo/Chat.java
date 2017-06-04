@@ -17,6 +17,12 @@ public class Chat {
 	}
 	
 	public int cantidTotalDeMensajesRecibidos(){
-		return mensajes.size();
+		int cantTotal=0;
+		
+		for( Mensaje unMensaje:mensajes){
+			cantTotal=cantTotal + unMensaje.cantidad();
+		}
+		
+		return cantTotal;
 	}
 }
