@@ -59,6 +59,15 @@ public class AlgoChat {
 		    
 		    cantidad=cantidad+unContacto.cantidadTotalMensajesRecibidos();
 		}
+		
+		Set<String> keyss =grupos.keySet();
+		for(String key:keyss){
+			Grupo unGrupo=grupos.get(key);
+		    
+		    cantidad=cantidad+unGrupo.cantidadTotalMensajesRecibidos();
+		}
+		    
+		
 		return cantidad;
 	}
 	
@@ -90,6 +99,9 @@ public class AlgoChat {
 	
 	public void crearGrupo(String nombreGrupo){
 		Grupo unGrupo=new Grupo(nombreGrupo);
+		Contacto unContacto =new Contacto(nombreGrupo); 
+		unGrupo.agregarContacto(nombreGrupo,unContacto);
+		unGrupo.agregarAdministrador(nombreUsuarioEnUso);
 		grupos.put(nombreGrupo, unGrupo);
 	}
 	public void agregarContactoAGrupo(String unNombreContacto,String unGrupo){
@@ -99,11 +111,22 @@ public class AlgoChat {
 	}
 	
 	public int cantidadMiembrosEnGrupo(String nombre){
-		return grupos.get(nombre).cantidadMiembros()+1;
+		return grupos.get(nombre).cantidadMiembros();
 		
 	}
 	
 	public boolean existeGrupo(String nombre){
 		return grupos.get(nombre).esMiNombre(nombre);
+	}
+	public void recibirMensajeDeGrupo(String unGrupo, String unNombreContacto, String contenido){
+		grupos.get(unGrupo).recibirMensajeDe(unNombreContacto,contenido);
+	}
+	public void enviarMensajeAGrupo(String unGrupo, String contenido){
+		grupos.get(unGrupo).enviarMensajeA(unGrupo,contenido);
+	}
+	public int cantidadMensajesRecibidosDelGrupo(String nombre){
+        return grupos.get(nombre).cantidadTotalMensajesRecibidos();
+		    
+	 
 	}
 }
