@@ -9,6 +9,7 @@ public class AlgoChat {
 	private String nombreUsuarioEnUso="Yo";
 	 
 	HashMap<String,Contacto> contactos=new HashMap<String,Contacto>() ;
+	HashMap<String,Grupo> grupos=new HashMap<String,Grupo>() ;
 	public AlgoChat(String nombre ){
 		this.nombreUsuario=nombre;
 	}
@@ -85,5 +86,24 @@ public class AlgoChat {
 	public int cantidadMensajesEnviadosA(String nombre){
 		Contacto unContacto=contactos.get(nombre);
 		return unContacto.cantidadTotalMensajesEnviados();
+	}
+	
+	public void crearGrupo(String nombreGrupo){
+		Grupo unGrupo=new Grupo(nombreGrupo);
+		grupos.put(nombreGrupo, unGrupo);
+	}
+	public void agregarContactoAGrupo(String unNombreContacto,String unGrupo){
+		Contacto unContacto=new Contacto(unNombreContacto);
+		grupos.get(unGrupo).agregarContacto( unNombreContacto,unContacto);
+		
+	}
+	
+	public int cantidadMiembrosEnGrupo(String nombre){
+		return grupos.get(nombre).cantidadMiembros()+1;
+		
+	}
+	
+	public boolean existeGrupo(String nombre){
+		return grupos.get(nombre).esMiNombre(nombre);
 	}
 }
