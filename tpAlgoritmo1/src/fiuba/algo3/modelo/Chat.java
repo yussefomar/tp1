@@ -20,7 +20,17 @@ public class Chat {
 		int cantTotal=0;
 		
 		for( Mensaje unMensaje:mensajes){
-			cantTotal=cantTotal + unMensaje.cantidad();
+			cantTotal=cantTotal + unMensaje.cantidadRecibido();
+		}
+		
+		return cantTotal;
+	}
+	
+	public int cantidadTotalMensajesEnviados(){
+int cantTotal=0;
+		
+		for( Mensaje unMensaje:mensajes){
+			cantTotal=cantTotal + unMensaje.cantidadUsuario();
 		}
 		
 		return cantTotal;

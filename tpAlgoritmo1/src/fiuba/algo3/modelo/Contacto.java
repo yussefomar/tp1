@@ -42,5 +42,15 @@ public class Contacto {
 		return cantidad;
 		
 	}
+	public int cantidadTotalMensajesEnviados(){
+	int cantidad=0;
+	Iterator<Chat> iterator=chats.iterator();
+	while(iterator.hasNext()){
+		
+		cantidad=cantidad + iterator.next().cantidadTotalMensajesEnviados();
+	}
+	return cantidad;
+	
+}
 	
 }

@@ -13,4 +13,21 @@ public class Mensaje {
 	public int cantidad(){
 		return 1;
 	}
+	
+	//enviado
+	public int cantidadUsuario(){
+		if(this.emisor=="Yo"){
+			return 1;
+		}
+		return 0;
+	}
+	
+	//enviado
+		public int cantidadRecibido(){
+			if(this.emisor!="Yo"){
+				return 1;
+			}
+			return 0;
+		}
+	 
 }

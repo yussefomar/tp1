@@ -5,10 +5,12 @@ import java.util.Set;
 
 public class AlgoChat {
 
-	private String nombre;
+	private String nombreUsuario;
+	private String nombreUsuarioEnUso="Yo";
+	 
 	HashMap<String,Contacto> contactos=new HashMap<String,Contacto>() ;
-	public AlgoChat(String nombre){
-		this.nombre=nombre;
+	public AlgoChat(String nombre ){
+		this.nombreUsuario=nombre;
 	}
 	
 	
@@ -31,7 +33,7 @@ public class AlgoChat {
 		
 	}
 	public String nombreUsuario(){
-		return nombre ;
+		return nombreUsuario ;
 	}
 	public void agregarContacto(String nombre){
 		Contacto unContacto= new Contacto(nombre);
@@ -65,4 +67,23 @@ public class AlgoChat {
 		
 	}
 	
+	public void enviarMensajeA(String nombre, String contenido){
+		contactos.get(nombre).agregarMensajeDe(nombreUsuarioEnUso, contenido);
+	}
+	
+	public int cantidadTotalMensajesEnviados(){
+		int cantidad=0;
+		
+		Set<String> keys =contactos.keySet();
+		for(String key:keys){
+			Contacto unContacto=contactos.get(key);
+		    
+		    cantidad=cantidad+unContacto.cantidadTotalMensajesEnviados();
+		}
+		return cantidad;
+	}
+	public int cantidadMensajesEnviadosA(String nombre){
+		Contacto unContacto=contactos.get(nombre);
+		return unContacto.cantidadTotalMensajesEnviados();
+	}
 }
