@@ -1,15 +1,15 @@
 package fiuba.algo3.modelo;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class AlgoChat {
 
 	private String nombreUsuario;
-	private String nombreUsuarioEnUso="Yo";
+	
 	 
 	HashMap<String,Contacto> contactos=new HashMap<String,Contacto>() ;
-	HashMap<String,Grupo> grupos=new HashMap<String,Grupo>() ;
 	public AlgoChat(String nombre ){
 		this.nombreUsuario=nombre;
 	}
@@ -47,7 +47,7 @@ public class AlgoChat {
 	
 	public void recibirMensajeDe(String emisor,String contenido){
 	 
-	 contactos.get(emisor).agregarMensajeDe( emisor, contenido);
+	 contactos.get(emisor).recibirMensajeDe( emisor, contenido);
 	 
 	}
 	public int cantidadTotalMensajesRecibidos(){
@@ -59,15 +59,6 @@ public class AlgoChat {
 		    
 		    cantidad=cantidad+unContacto.cantidadTotalMensajesRecibidos();
 		}
-		
-		Set<String> keyss =grupos.keySet();
-		for(String key:keyss){
-			Grupo unGrupo=grupos.get(key);
-		    
-		    cantidad=cantidad+unGrupo.cantidadTotalMensajesRecibidos();
-		}
-		    
-		
 		return cantidad;
 	}
 	
@@ -78,7 +69,7 @@ public class AlgoChat {
 	}
 	
 	public void enviarMensajeA(String nombre, String contenido){
-		contactos.get(nombre).agregarMensajeDe(nombreUsuarioEnUso, contenido);
+		contactos.get(nombre).enviarMensajeA(nombreUsuario, contenido);
 	}
 	
 	public int cantidadTotalMensajesEnviados(){
@@ -96,37 +87,9 @@ public class AlgoChat {
 		Contacto unContacto=contactos.get(nombre);
 		return unContacto.cantidadTotalMensajesEnviados();
 	}
-	
-	public void crearGrupo(String nombreGrupo){
-		Grupo unGrupo=new Grupo(nombreGrupo);
-		Contacto unContacto =new Contacto(nombreGrupo); 
-		unGrupo.agregarContacto(nombreGrupo,unContacto);
-		unGrupo.agregarAdministrador(nombreUsuarioEnUso);
-		grupos.put(nombreGrupo, unGrupo);
-	}
-	public void agregarContactoAGrupo(String unNombreContacto,String unGrupo){
-		Contacto unContacto=new Contacto(unNombreContacto);
-		grupos.get(unGrupo).agregarContacto( unNombreContacto,unContacto);
+	public List<String> obtenerConversacionCon(String nombreContacto){
+		return contactos.get(nombreContacto).conversacion();
 		
-	}
-	
-	public int cantidadMiembrosEnGrupo(String nombre){
-		return grupos.get(nombre).cantidadMiembros();
 		
-	}
-	
-	public boolean existeGrupo(String nombre){
-		return grupos.get(nombre).esMiNombre(nombre);
-	}
-	public void recibirMensajeDeGrupo(String unGrupo, String unNombreContacto, String contenido){
-		grupos.get(unGrupo).recibirMensajeDe(unNombreContacto,contenido);
-	}
-	public void enviarMensajeAGrupo(String unGrupo, String contenido){
-		grupos.get(unGrupo).enviarMensajeA(unGrupo,contenido);
-	}
-	public int cantidadMensajesRecibidosDelGrupo(String nombre){
-        return grupos.get(nombre).cantidadTotalMensajesRecibidos();
-		    
-	 
 	}
 }

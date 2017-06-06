@@ -7,13 +7,13 @@ import java.util.List;
 public class Contacto {
 
 	private String nombre;
-	private List<Chat> chats;
+	private Chat unChat;
 	 
 	
 	public Contacto(String nombre){
 		
 		this.nombre=nombre;
-		this.chats=new ArrayList<Chat>();
+		this.unChat=new Chat();
 	}
 	
 	public boolean existo(String nombre){
@@ -22,27 +22,40 @@ public class Contacto {
 	public String getNombre(){
 		return this.nombre ;
 	}
-	
-	public void agregarMensajeDe(String emisor,String contenido){
+	public void recibirMensajeDe( String emisor,String contenido){
 		Mensaje	unMensaje=new Mensaje(emisor,contenido);
-		   Chat unChat =new Chat();
-		 unChat.agregarMensaje(unMensaje);
-		 chats.add(unChat);
-		 
-		 
+		   
+		 unChat.recibirMensajeDe(unMensaje);
 		 
 	}
+	public void  enviarMensajeA(String emisor,String contenido){
+		Mensaje	unMensaje=new Mensaje(emisor,contenido);
+		  
+		 unChat.enviarMensajeA(unMensaje);
+		 
+
+	}
+	
+	
 	public int cantidadTotalMensajesRecibidos(){
-		int cantidad=0;
-		Iterator<Chat> iterator=chats.iterator();
-		while(iterator.hasNext()){
+		 
 			
-			cantidad=cantidad + iterator.next().cantidTotalDeMensajesRecibidos();
-		}
-		return cantidad;
+			 
+		 
+		return unChat.cantidTotalDeMensajesRecibidos();
 		
 	}
+	
 	public int cantidadTotalMensajesEnviados(){
+ 		 
+		return unChat.cantidadTotalMensajesEnviados();
+		
+	}
+	public List<String> conversacion(){
+		 return unChat.conversacion();
+	}
+	
+	/*public int cantidadTotalMensajesEnviados(){
 	int cantidad=0;
 	Iterator<Chat> iterator=chats.iterator();
 	while(iterator.hasNext()){
@@ -51,6 +64,6 @@ public class Contacto {
 	}
 	return cantidad;
 	
-}
+}*/
 	
 }

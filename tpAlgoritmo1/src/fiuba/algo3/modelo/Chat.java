@@ -1,38 +1,64 @@
 package fiuba.algo3.modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class Chat {
-    List<Mensaje> mensajes;
+    List<Mensaje> mensajesRecibidos;
+    List<Mensaje>mensajesEnviados;
+    List<String>conversacion;
+     
+    
 	
 	
 	public Chat(){
-		mensajes=new ArrayList<Mensaje>();
-	}
-	
-	public void agregarMensaje(Mensaje unMensaje){
-		mensajes.add(unMensaje);
+		mensajesRecibidos=new ArrayList<Mensaje>();
+		mensajesEnviados=new ArrayList<Mensaje>();
 		
+		conversacion=new ArrayList<String>();
+	}
+	public void recibirMensajeDe(  Mensaje unMensaje){
+		mensajesRecibidos.add(unMensaje);
+		String linea=unMensaje.getEmisor()+": "+unMensaje.getMensaje();
+		conversacion.add(linea); 
+	}
+	 
+	public void enviarMensajeA(Mensaje unMensaje){
+		mensajesEnviados.add(unMensaje);
+		String linea="Yo:"+" "+unMensaje.getMensaje();
+		conversacion.add(linea); 
+		 
+
 	}
 	
 	public int cantidTotalDeMensajesRecibidos(){
-		int cantTotal=0;
+		 
 		
-		for( Mensaje unMensaje:mensajes){
-			cantTotal=cantTotal + unMensaje.cantidadRecibido();
-		}
-		
-		return cantTotal;
+		return   mensajesRecibidos.size();
+		 
 	}
 	
 	public int cantidadTotalMensajesEnviados(){
-int cantTotal=0;
+		return   mensajesEnviados.size();
+	}
+	public List<String> conversacion(){
+		List<String> aux=new ArrayList<String>();
+		aux.add("");
 		
-		for( Mensaje unMensaje:mensajes){
-			cantTotal=cantTotal + unMensaje.cantidadUsuario();
-		}
+
+        for(int i=conversacion.size()-1; 0<=i ; i--) {
+        	aux.add(conversacion.get(i));
+        	  System.out.println( conversacion.get(i) );
+        }
 		
-		return cantTotal;
+		
+		
+		 
+		return aux;
+	}
+	public List<String> condversacion(){
+		 return conversacion;
 	}
 }
