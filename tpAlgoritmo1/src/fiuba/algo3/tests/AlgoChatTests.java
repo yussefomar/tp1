@@ -139,7 +139,8 @@ public class AlgoChatTests extends TestCase {
         algoChat.enviarMensajeAGrupo("Tarde", "bien, yo llevo las medialunas...");
 
         assertEquals(2, algoChat.cantidadTotalMensajesRecibidos());
-        assertEquals(1, algoChat.cantidadMensajesDe("Marcio"));
+        assertEquals(2, algoChat.cantidadTotalMensajesRecibidos());
+         assertEquals(1, algoChat.cantidadMensajesDe("Marcio"));
         assertEquals(2, algoChat.cantidadMensajesRecibidosDelGrupo("Tarde"));
         assertEquals(2, algoChat.cantidadTotalMensajesEnviados());
         assertEquals(2, algoChat.cantidadMensajesEnviadosAlGrupo("Tarde"));
@@ -163,7 +164,7 @@ public class AlgoChatTests extends TestCase {
         assertEquals("Yo: sonamos...", algoChat.obtenerConversacionConGrupo("Todos").get(1));
         assertEquals("Tomas: Me neither", algoChat.obtenerConversacionConGrupo("Todos").get(2));
         assertEquals("Diego: Yo tampoco", algoChat.obtenerConversacionConGrupo("Todos").get(3));
-
+ 
     }
 
     @Test

@@ -36,5 +36,9 @@ public class Mensaje {
 		public String getMensaje(){
 			return mensaje;
 		}
+		
+		public boolean esMiEmisor(String nombre){
+			return nombre==this.emisor;
+		}
 	 
 }

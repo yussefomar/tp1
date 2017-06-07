@@ -10,6 +10,7 @@ public class AlgoChat {
 	
 	 
 	HashMap<String,Contacto> contactos=new HashMap<String,Contacto>() ;
+	HashMap<String,Grupo> grupos=new HashMap<String,Grupo>() ;
 	public AlgoChat(String nombre ){
 		this.nombreUsuario=nombre;
 	}
@@ -59,12 +60,25 @@ public class AlgoChat {
 		    
 		    cantidad=cantidad+unContacto.cantidadTotalMensajesRecibidos();
 		}
+		
+		Set<String> keys2=grupos.keySet();
+		for(String key2:keys2){
+			cantidad=cantidad+grupos.get(key2).cantidadTotalMensajesRecibidos();
+		}
 		return cantidad;
 	}
 	
 	public int cantidadMensajesDe(String nombre){
-		Contacto unContacto=contactos.get(nombre);
-		return unContacto.cantidadTotalMensajesRecibidos();
+		
+		int cantidad=0;
+		
+		
+		Set<String> keys2=grupos.keySet();
+		for(String key2:keys2){
+			cantidad= cantidad + grupos.get(key2).cantidadMensajesDe(  nombre);
+		
+		}
+		return cantidad=cantidad+ contactos.get(nombre).cantidadTotalMensajesRecibidos();
 		
 	}
 	
@@ -81,6 +95,11 @@ public class AlgoChat {
 		    
 		    cantidad=cantidad+unContacto.cantidadTotalMensajesEnviados();
 		}
+		
+		Set<String> keys2=grupos.keySet();
+		for(String key2:keys2){
+			cantidad=cantidad+grupos.get(key2).cantidadTotalMensajesEnviados();
+		}
 		return cantidad;
 	}
 	public int cantidadMensajesEnviadosA(String nombre){
@@ -91,5 +110,53 @@ public class AlgoChat {
 		return contactos.get(nombreContacto).conversacion();
 		
 		
+	}
+	
+	public void crearGrupo(String nombre){
+		Grupo unGrupo=new Grupo(nombre);
+		unGrupo.agregarAdministrador(nombreUsuario);
+		grupos.put(nombre,unGrupo);
+	}
+	
+	public void agregarContactoAGrupo(String nombreMiembro, String nombreGrupo){
+		grupos.get(nombreGrupo).agregarMiembro(nombreMiembro);
+	}
+	
+	public void recibirMensajeDeGrupo(String nombreGrupo,String nombreMiembro, String contenido)
+	{
+		grupos.get(nombreGrupo).recibirMensajeDeGrupo(nombreMiembro, contenido);
+	}
+	
+	public void enviarMensajeAGrupo(String nombreGrupo,String contenido){
+		grupos.get(nombreGrupo);
+	}
+	
+	public int cantidadMiembrosEnGrupo(String nombre){
+		return grupos.get(nombre).cantidadMiembrosEnGrupo();
+		
+	}
+
+
+	public boolean existeGrupo(String nombre) {
+		 
+		return grupos.get(nombre).existo(nombre);
+	}
+
+
+	public int cantidadMensajesRecibidosDelGrupo(String nombre) {
+		 
+		return  grupos.get(nombre).cantidadTotalMensajesRecibidos();
+	}
+
+
+	public int   cantidadMensajesEnviadosAlGrupo(String nombre) {
+	 
+		return grupos.get(nombre).cantidadTotalMensajesEnviados();
+	}
+
+
+	public List<String> obtenerConversacionConGrupo(String nombre) {
+		
+		return grupos.get(nombre).obtenerConversacionConGrupo();
 	}
 }

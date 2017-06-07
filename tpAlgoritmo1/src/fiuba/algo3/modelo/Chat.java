@@ -33,6 +33,17 @@ public class Chat {
 
 	}
 	
+	public int cantidadMensajesDe(String miembro){
+		int cantidad=0;
+		
+		 for(int i=0;i<mensajesRecibidos.size()-1 ; i++) {
+	        	if(mensajesRecibidos.get(i).esMiEmisor( miembro));
+	        	  cantidad=cantidad +1 ;
+	        } 
+
+		return cantidad;
+	}
+	
 	public int cantidTotalDeMensajesRecibidos(){
 		 
 		
