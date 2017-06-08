@@ -6,32 +6,28 @@ public class main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		AlgoChat algoChat = new AlgoChat("Carlos");
+		 AlgoChat algoChat = new AlgoChat("Carlos");
 
-        algoChat.agregarContacto("Marcio");
-        algoChat.agregarContacto("Diego");
-        algoChat.agregarContacto("Eugenio");
-        algoChat.agregarContacto("Tomas");
+	        algoChat.agregarContacto("Marcio");
+	        algoChat.recibirMensajeDe("Marcio", "Estas en tu casa?");
+	        algoChat.enviarMensajeA("Marcio", "hoy no");
 
-        algoChat.crearGrupo("Tarde");
-        algoChat.agregarContactoAGrupo("Marcio", "Tarde");
-        algoChat.agregarContactoAGrupo("Eugenio", "Tarde");
+	        
 
-        algoChat.crearGrupo("Todos");
-        algoChat.agregarContactoAGrupo("Marcio", "Todos");
-        algoChat.agregarContactoAGrupo("Eugenio", "Todos");
-        algoChat.agregarContactoAGrupo("Diego", "Todos");
-        algoChat.agregarContactoAGrupo("Tomas", "Todos");
+	        algoChat.agregarContacto("Diego");
+	        algoChat.recibirMensajeDe("Diego", "Paso a las 7");
+	        algoChat.enviarMensajeA("Diego", "OK");
+	        algoChat.recibirMensajeDe("Diego", "Avisame si vas a estar");
+	        algoChat.enviarMensajeA("Diego", "Te dije que si...");
 
-        algoChat.recibirMensajeDeGrupo("Tarde", "Marcio", "Nos juntamos el lunes?");
-        algoChat.enviarMensajeAGrupo("Tarde", "Yo puedo");
-        algoChat.recibirMensajeDeGrupo("Tarde", "Eugenio", "Me too");
-        algoChat.enviarMensajeAGrupo("Tarde", "bien, yo llevo las medialunas...");
+	         algoChat.cantidadTotalMensajesRecibidos() ;
+	        algoChat.cantidadMensajesDe("Diego") ;
+	          algoChat.cantidadTotalMensajesEnviados() ;
+	         algoChat.cantidadMensajesEnviadosA("Diego") ;
 
-     /*   assertEquals(2,*/ algoChat.cantidadTotalMensajesRecibidos();
-      /*  assertEquals(2,*/ algoChat.cantidadTotalMensajesRecibidos();
-         /*assertEquals(1,*/ algoChat.cantidadMensajesDe("Marcio");
+	        algoChat.borrarMensajesDelContacto("Marcio");
 
+	       algoChat.cantidadTotalMensajesRecibidos() ;
 	}
 
 }

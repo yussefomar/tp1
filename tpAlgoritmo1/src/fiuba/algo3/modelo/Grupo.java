@@ -76,6 +76,22 @@ public class Grupo {
 		 
 		return unChat.conversacion();
 	}
+
+
+
+
+	public void borrarMensajesDelContacto(String miembro) {
+		unChat.borrarMensajesDelContacto( miembro);
+		
+	}
+
+
+
+
+	public void borrarMensajesDelGrupo() {
+		unChat. borrarMensajesDelGrupo();
+		
+	}
 	 
 	
 }

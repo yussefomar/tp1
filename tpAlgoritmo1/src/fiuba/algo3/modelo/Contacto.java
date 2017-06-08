@@ -54,6 +54,11 @@ public class Contacto {
 	public List<String> conversacion(){
 		 return unChat.conversacion();
 	}
+
+	public void borrarMensajesDelContacto() {
+		 unChat.borrarMensajesDelContacto();
+		
+	}
 	
 	/*public int cantidadTotalMensajesEnviados(){
 	int cantidad=0;

@@ -37,8 +37,8 @@ public class Chat {
 		int cantidad=0;
 		
 		 for(int i=0;i<mensajesRecibidos.size()-1 ; i++) {
-	        	if(mensajesRecibidos.get(i).esMiEmisor( miembro));
-	        	  cantidad=cantidad +1 ;
+	        	if(mensajesRecibidos.get(i).esMiEmisor( miembro)){
+	        	  cantidad=cantidad +1 ;}
 	        } 
 
 		return cantidad;
@@ -71,5 +71,35 @@ public class Chat {
 	}
 	public List<String> condversacion(){
 		 return conversacion;
+	}
+	public void borrarMensajesDelContacto() {
+		 mensajesRecibidos.clear();
+		 mensajesEnviados.clear();
+		
+	}
+	public void borrarMensajesDelContacto(String miembro) {
+		
+		
+		for(int i=0;i<mensajesRecibidos.size()-1 ; i++) {
+        	if(mensajesRecibidos.get(i).esMiEmisor( miembro)){
+        	  mensajesRecibidos.remove(i);
+                 } 
+		
+	                }
+		
+		for(int i=0;i<mensajesEnviados.size()-1 ; i++) {
+        	if(mensajesEnviados.get(i).esMiEmisor( miembro)){
+        		mensajesEnviados.remove(i);
+                 } 
+		
+	                }
+		
+		
+		
+             }
+	public void borrarMensajesDelGrupo() {
+		 mensajesEnviados.clear();
+		 mensajesRecibidos.clear();
+		
 	}
 }

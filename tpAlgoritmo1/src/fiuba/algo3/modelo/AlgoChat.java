@@ -128,7 +128,7 @@ public class AlgoChat {
 	}
 	
 	public void enviarMensajeAGrupo(String nombreGrupo,String contenido){
-		grupos.get(nombreGrupo);
+		grupos.get(nombreGrupo).enviarMensajeAGrupo(  contenido);
 	}
 	
 	public int cantidadMiembrosEnGrupo(String nombre){
@@ -158,5 +158,23 @@ public class AlgoChat {
 	public List<String> obtenerConversacionConGrupo(String nombre) {
 		
 		return grupos.get(nombre).obtenerConversacionConGrupo();
+	}
+
+
+	public void borrarMensajesDelContacto(String nombre) {
+		 contactos.get(nombre).borrarMensajesDelContacto();
+		 
+		 Set<String> keys2=grupos.keySet();
+			for(String key2:keys2){
+		  grupos.get(key2).borrarMensajesDelContacto( nombre);
+			}
+		 
+		
+	}
+
+
+	public void borrarMensajesDelGrupo(String nombre) {
+		grupos.get(nombre).borrarMensajesDelGrupo();
+		
 	}
 }
